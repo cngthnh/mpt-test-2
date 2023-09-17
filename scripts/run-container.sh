@@ -29,8 +29,8 @@ fi
 
 mkdir -p ~/logs/$APP_NAME/;
 
-# echo "Streaming logs from container $container_id to file ~/logs/$APP_NAME/$container_id-$(date +%s).log";
-# nohup docker logs -f $container_id > ~/logs/$APP_NAME/$container_id-$(date +%s).log &
+echo "Streaming logs from container $container_id to file ~/logs/$APP_NAME/$container_id-$(date +%s).log";
+nohup docker logs -f $container_id > ~/logs/$APP_NAME/$container_id-$(date +%s).log &
 
 echo "Waiting for MTurk preview URL: ";
 
