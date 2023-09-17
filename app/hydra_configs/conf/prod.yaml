@@ -13,7 +13,7 @@ mephisto:
     extra_source_dir: ${task_dir}/webapp/src/static
     units_per_assignment: 1
   task:
-    task_name: prod-puse
+    task_name: prod-puse-1
     task_title: "Pick up similar entities prod"
     task_description: "A machine learning algorithm classifies the following entities as the same class. Drag-and-drop and add more entities of the same class from the right until all the entities on the right is in a different class."
     task_reward: 0.01
