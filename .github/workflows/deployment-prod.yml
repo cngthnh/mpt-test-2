@@ -1,0 +1,119 @@
+name: Deployment - Prod
+on:
+  push:
+    branches:
+      - deployment-prod
+  pull_request:
+    branches:
+      - deployment-prod
+
+env:
+  HOST: mephisto.aufederal2022.com
+  USERNAME: deployer
+  PORT: 22
+  MTURK_NAME: my_mturk_user
+  MTURK_TYPE: mturk
+  USER_EMAIL: jaythaiduong.huynh@uq.edu.au
+  USER_NAME: jaythaiduong.huynh
+  REPO_DIR: ~/${{ github.event.repository.name }}-${{ github.ref_name }}
+  APP_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
+  APP_ENV: prod
+
+jobs:
+  build-container:
+    name: build-container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@v0.1.7
+        with:
+          # ssh host
+          host: ${{ env.HOST }}
+          # ssh port
+          port: ${{ env.PORT }}
+          # ssh username
+          username: ${{ env.USERNAME }}
+          # ssh password
+          key: ${{ secrets.PRIVATE_KEY }}
+          # execute commands
+          script: > 
+            if [ -d ${{ env.REPO_DIR }} ];
+            then 
+              cd ${{ env.REPO_DIR }} && git pull || true; 
+            else 
+              mkdir -p ${{ env.REPO_DIR }} && cd ${{ env.REPO_DIR }};
+              git clone git@github.com:${{ github.repository }}.git ${{ env.REPO_DIR }};
+              git checkout ${{ github.ref_name }}; 
+            fi
+
+      - uses: appleboy/ssh-action@v0.1.7
+        with:
+          # ssh host
+          host: ${{ env.HOST }}
+          # ssh port
+          port: ${{ env.PORT }}
+          # ssh username
+          username: ${{ env.USERNAME }}
+          # ssh password
+          key: ${{ secrets.PRIVATE_KEY }}
+          # execute commands
+          script: >
+            cd ${{ env.REPO_DIR }};
+            curl https://raw.githubusercontent.com/d-lab/mephisto/deployment/scripts/build-container.sh | bash -s -- \
+              ${{ env.REPO_DIR }} \
+              ${{ env.APP_NAME }} \
+              ${{ env.USER_EMAIL }} \
+              ${{ env.USER_NAME }} \
+              ${{ secrets.HEROKU_API_KEY }} \
+              ${{ env.MTURK_TYPE }} \
+              ${{ env.MTURK_NAME }} \
+              ${{ secrets.MTURK_ACCESS_KEY_ID }} \
+              ${{ secrets.MTURK_SECRET_ACCESS_KEY }} \
+              ${{ secrets.DOTNETRC }}
+
+  run-container:
+    name: run-container
+    needs: build-container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@v0.1.7
+        with:
+          # ssh host
+          host: ${{ env.HOST }}
+          # ssh port
+          port: ${{ env.PORT }}
+          # ssh username
+          username: ${{ env.USERNAME }}
+          # ssh password
+          key: ${{ secrets.PRIVATE_KEY }}
+          # execute commands
+          command_timeout: 30m
+          script: >
+            cd ${{ env.REPO_DIR }}; 
+            curl https://raw.githubusercontent.com/d-lab/mephisto/deployment/scripts/run-container.sh | bash -s -- \
+              ${{ env.APP_NAME }} \
+              ${{ secrets.HEROKU_API_KEY }} \
+              ${{ env.APP_ENV }} \
+              "https://www.mturk.com/mturk/preview?groupId"\
+              ${{ secrets.AWS_ACCESS_KEY_ID }} \
+              ${{ secrets.AWS_SECRET_ACCESS_KEY }} ;
+
+  view-metrics:
+    name: view-metrics
+    needs: run-container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@v0.1.7
+        with:
+          # ssh host
+          host: ${{ env.HOST }}
+          # ssh port
+          port: ${{ env.PORT }}
+          # ssh username
+          username: ${{ env.USERNAME }}
+          # ssh password
+          key: ${{ secrets.PRIVATE_KEY }}
+          # execute commands
+          script: >
+            cd ${{ env.REPO_DIR }}; 
+            curl https://raw.githubusercontent.com/d-lab/mephisto/deployment/scripts/view-metrics.sh | bash -s -- \
+              ${{ env.APP_NAME }};

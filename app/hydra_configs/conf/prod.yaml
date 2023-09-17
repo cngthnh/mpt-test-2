@@ -1,0 +1,22 @@
+#@package _global_
+defaults:
+  - /mephisto/blueprint: static_react_task
+  - /mephisto/architect: heroku
+  - /mephisto/provider: mturk
+mephisto:
+  provider:
+    requester_name: my_mturk_user
+  blueprint:
+    data_json: ${task_dir}/data.json
+    task_source: ${task_dir}/webapp/build/bundle.js
+    link_task_source: false
+    extra_source_dir: ${task_dir}/webapp/src/static
+    units_per_assignment: 3
+  task:
+    task_name: prod-pick-up-similar-entities
+    task_title: "Pick up similar entities prod"
+    task_description: "A machine learning algorithm classifies the following entities as the same class. Drag-and-drop and add more entities of the same class from the right until all the entities on the right is in a different class."
+    task_reward: 0.000000000001
+    task_tags: "entity, same class, knowledge graph"
+    # We expect to be able to handle 300 concurrent tasks without issue
+    max_num_concurrent_units: 300

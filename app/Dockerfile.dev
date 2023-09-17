@@ -1,0 +1,18 @@
+FROM jayhuynh239/mephisto-uq:latest
+
+SHELL ["/bin/bash", "-c"]
+
+# Set working directory to /app
+WORKDIR /mephisto/app
+
+# Clear the content of /app
+RUN rm -rf ./*
+
+# Copy your application code to /app
+COPY . .
+
+WORKDIR webapp
+RUN ./link_mephisto_task.sh
+WORKDIR ..
+
+CMD ["python3", "deploy.py"]

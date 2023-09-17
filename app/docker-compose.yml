@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  mephisto-service:
+    container_name: ${PROJECT_NAME}-service
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: >
+      sh -c "../mephisto/scripts/metrics/shutdown_metrics.py || true && python3 deploy.py"
+#      sh -c "sleep infinity"
+#    command: ["sleep", "infinity"]
+    ports:
+      - 3000:3000
+      - 3032:3032
+    volumes:
+      - .:/mephisto/app:cached
+      - ./data:/mephisto/data:cached
+#      - ../mephisto:/mephisto/mephisto:cached

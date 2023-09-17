@@ -1,0 +1,8 @@
+data/
+.vscode
+__pycache__/
+voting
+*.csv
+.env
+output/
+db/

@@ -1,0 +1,42 @@
+{
+  "name": "mephisto-task-compiler",
+  "version": "1.0.1",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "dev:watch": "webpack --mode development --watch",
+    "test": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "@annotated/annotator-tracker": "0.0.1",
+    "bootstrap": "^4.3.1",
+    "daisyui": "^2.51.4",
+    "mephisto-task": "2.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^6.7.3",
+    "cypress": "^10.1.0",
+    "file-loader": "^6.0.0",
+    "postcss": "^8.4.21",
+    "postcss-loader": "^7.1.0",
+    "postcss-preset-env": "^8.0.1",
+    "style-loader": "^1.3.0",
+    "tailwindcss": "^3.2.7",
+    "url-loader": "^4.1.0",
+    "webpack": "^5.76.2",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.12.0"
+  }
+}
