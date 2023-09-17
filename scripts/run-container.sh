@@ -39,4 +39,4 @@ timeout 1800 \
 
 
 echo "MTurk preview URL: ";
-docker logs $container_id;
+# docker logs $container_id;
