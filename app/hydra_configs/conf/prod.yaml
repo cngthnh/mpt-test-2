@@ -11,7 +11,7 @@ mephisto:
     task_source: ${task_dir}/webapp/build/bundle.js
     link_task_source: false
     extra_source_dir: ${task_dir}/webapp/src/static
-    units_per_assignment: 3
+    units_per_assignment: 1
   task:
     task_name: prod-pick-up-similar-entities
     task_title: "Pick up similar entities prod"
