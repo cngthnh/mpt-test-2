@@ -35,7 +35,7 @@ mkdir -p ~/logs/$APP_NAME/;
 echo "Waiting for MTurk preview URL: ";
 
 timeout 1800 \
-    sh -c "while ! docker logs -f $container_id 2>&1 | grep -q '$M_TURK_PREVIEW_URL_PREFIX'; \
+    sh -c "while ! grep '$M_TURK_PREVIEW_URL_PREFIX' ~/logs/$APP_NAME/$container_id-$(date +%s).log; \
             do echo "MTurk URL not found"; sleep 1; done";
 
 
