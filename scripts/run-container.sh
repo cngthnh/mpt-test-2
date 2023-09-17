@@ -34,7 +34,7 @@ nohup docker logs -f $container_id > ~/logs/$APP_NAME/$container_id-$(date +%s).
 
 echo "Waiting for MTurk preview URL: ";
 timeout 1800 \
-    sh -c "while ! docker logs -f $container_id| grep -q '$M_TURK_PREVIEW_URL_PREFIX'; \
+    sh -c "while ! docker logs -f $container_id 2>&1 | grep -q '$M_TURK_PREVIEW_URL_PREFIX'; \
             do sleep 1; done";
 
 
