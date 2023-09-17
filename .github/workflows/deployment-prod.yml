@@ -8,8 +8,8 @@ on:
       - deployment-prod
 
 env:
-  HOST: mephisto.aufederal2022.com
-  USERNAME: deployer
+  HOST: 3.26.183.11
+  USERNAME: ubuntu
   PORT: 22
   MTURK_NAME: my_mturk_user
   MTURK_TYPE: mturk
