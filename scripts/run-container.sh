@@ -35,8 +35,8 @@ nohup docker logs -f $container_id > ~/logs/$APP_NAME/$container_id-$(date +%s).
 echo "Waiting for MTurk preview URL: ";
 
 timeout 1800 \
-    sh -c "while ! grep "https://www.mturk.com/mturk/preview?groupId" "~/logs/$APP_NAME/$container_id-$(date +%s).log"; \
-            do echo "MTurk URL not found" \
+    sh -c "while ! grep 'https://www.mturk.com/mturk/preview?groupId' '~/logs/$APP_NAME/$container_id-$(date +%s).log'; \
+            do echo 'MTurk URL not found' \
             sleep 1 \
             done";
 
