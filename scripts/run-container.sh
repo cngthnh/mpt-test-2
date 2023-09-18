@@ -37,9 +37,7 @@ echo "Waiting for MTurk preview URL: ";
 
 timeout 1800 \
     sh -c "while ! grep $M_TURK_PREVIEW_URL_PREFIX $LOG_FILE; \
-            do echo 'MTurk URL not found' \
-            sleep 1 \
-            done";
+            do echo 'MTurk URL not found'; sleep 1; done";
 
 
 echo "MTurk preview URL: ";
