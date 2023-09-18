@@ -29,7 +29,7 @@ fi
 
 mkdir -p ~/logs/$APP_NAME/;
 
-LOG_FILE="~/logs/$APP_NAME/$container_id-$(date +%s).log"
+LOG_FILE=~/logs/$APP_NAME/$container_id-$(date +%s).log
 echo "Streaming logs from container $container_id to file $LOG_FILE";
 nohup docker logs -f $container_id > $LOG_FILE &
 
