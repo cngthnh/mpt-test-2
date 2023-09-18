@@ -29,13 +29,14 @@ fi
 
 mkdir -p ~/logs/$APP_NAME/;
 
-echo "Streaming logs from container $container_id to file ~/logs/$APP_NAME/$container_id-$(date +%s).log";
-nohup docker logs -f $container_id > ~/logs/$APP_NAME/$container_id-$(date +%s).log &
+LOG_FILE="~/logs/$APP_NAME/$container_id-$(date +%s).log"
+echo "Streaming logs from container $container_id to file $LOG_FILE";
+nohup docker logs -f $container_id > $LOG_FILE &
 
 echo "Waiting for MTurk preview URL: ";
 
 timeout 1800 \
-    sh -c "while ! grep 'https://www.mturk.com/mturk/preview?groupId' '~/logs/$APP_NAME/$container_id-$(date +%s).log'; \
+    sh -c "while ! grep 'https://www.mturk.com/mturk/preview?groupId' ${LOG_FILE}; \
             do echo 'MTurk URL not found' \
             sleep 1 \
             done";
