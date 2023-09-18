@@ -41,4 +41,5 @@ timeout 1800 \
 
 
 echo "MTurk preview URL: ";
-docker logs $container_id;
+grep $M_TURK_PREVIEW_URL_PREFIX $LOG_FILE;
+# docker logs $container_id;
