@@ -7,6 +7,7 @@ on:
     branches:
       - deployment-prod
 
+
 env:
   HOST: 3.26.183.11
   USERNAME: ubuntu
