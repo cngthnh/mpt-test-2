@@ -433,9 +433,10 @@ def create_study(
             estimated_completion_time=int(estimated_completion_time_in_minutes),
             reward=int(reward_in_cents),
             eligibility_requirements=prolific_eligibility_requirements,
-            submissions_config=dict(
-                max_submissions_per_participant=-1,
-            ),
+            # Commented out because we are not able to set this field for now
+            # submissions_config=dict(
+            #     max_submissions_per_participant=-1,
+            # ),
         )
 
         #  Immediately update `completion_codes` in created Study, with just received Study ID.

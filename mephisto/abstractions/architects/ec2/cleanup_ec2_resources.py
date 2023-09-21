@@ -19,7 +19,7 @@ def main():
     )
     if confirm != "yes":
         return
-    iam_role_name = input("Please enter local profile name for IAM role\n>> ")
+    iam_role_name = 'mpt'
     ec2_helpers.cleanup_fallback_server(iam_role_name)
 
 

@@ -3,7 +3,7 @@ FROM alpine:3.15
 RUN apk update
 RUN apk upgrade
 RUN apk add --update --no-cache bash build-base gcc musl-dev python3-dev curl libc6-compat
-RUN apk add --no-cache gcc g++ py-pip mysql-dev linux-headers libffi-dev openssl-dev
+RUN apk add --no-cache gcc g++ py-pip mysql-dev linux-headers libffi-dev openssl-dev openssh-keygen openssh
 
 SHELL ["/bin/bash", "-c"]
 
@@ -18,9 +18,7 @@ RUN apk add --no-cache aws-cli
 
 # Install node and npm
 RUN apk add --update nodejs npm
-RUN npm install -g npm && \
-    npm update -g npm && \
-    npm install -g yarn heroku
+RUN npm install -g yarn heroku
 
 
 # ec2 architect requires `ssh-keygen` util, so we need to install it.

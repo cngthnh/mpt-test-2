@@ -208,7 +208,7 @@ class ProlificAgent(Agent):
         client = self._get_client()
 
         # Get Submission from Prolific, records status
-        datastore_unit = self.datastore.get_unit(unit_agent_pairing.db_id)
+        datastore_unit = self.datastore.get_unit(unit_agent_pairing.unit_id)
         prolific_submission_id = datastore_unit["prolific_submission_id"]
         prolific_submission = None
         if prolific_submission_id:

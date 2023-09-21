@@ -8,7 +8,6 @@ services:
       dockerfile: Dockerfile.dev
     command: >
       sh -c "../mephisto/scripts/metrics/shutdown_metrics.py || true && python3 deploy.py"
-#      sh -c "sleep infinity"
 #    command: ["sleep", "infinity"]
     ports:
       - 3000:3000
@@ -16,4 +15,5 @@ services:
     volumes:
       - .:/mephisto/app:cached
       - ./data:/mephisto/data:cached
-#      - ../mephisto:/mephisto/mephisto:cached
+      - ../mephisto:/mephisto/mephisto:cached
+      - ../examples:/mephisto/examples:cached

@@ -862,15 +862,16 @@ def get_instance_address(
 
     # Remove this IP from known hosts in case it's there,
     # as it's definitely not the old host anymore
-    subprocess.check_call(
-        [
-            "ssh-keygen",
-            "-f",
-            f"{KNOWN_HOST_PATH}",
-            "-R",
-            f'"{ip_address}"',
-        ]
-    )
+    if os.path.exists(KNOWN_HOST_PATH):
+        subprocess.check_call(
+            [
+                "ssh-keygen",
+                "-f",
+                f"{KNOWN_HOST_PATH}",
+                "-R",
+                f'"{ip_address}"',
+            ]
+        )
 
     return ip_address, allocation_id, association_id
 

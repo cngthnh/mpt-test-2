@@ -13,9 +13,9 @@ mephisto:
     extra_source_dir: ${task_dir}/webapp/src/static
     units_per_assignment: 1
   task:
-    task_name: example
-    task_title: "Pick up similar entities"
-    task_description: "A machine learning algorithm classifies the following entities as the same class. Drag-and-drop and add more entities of the same class from the right until all the entities on the right is in a different class."
+    task_name: mpt-d
+    task_title: "Sample mephisto task"
+    task_description: "This is sample mephisto task."
     task_reward: 0.15
     task_tags: "entity, same class, knowledge graph"
     # We expect to be able to handle 300 concurrent tasks without issue
