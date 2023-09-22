@@ -18,7 +18,9 @@ RUN apk add --no-cache aws-cli
 
 # Install node and npm
 RUN apk add --update nodejs npm
-RUN npm install -g yarn heroku
+RUN npm install -g npm && \
+    npm update -g npm && \
+    npm install -g yarn heroku
 
 
 # ec2 architect requires `ssh-keygen` util, so we need to install it.
