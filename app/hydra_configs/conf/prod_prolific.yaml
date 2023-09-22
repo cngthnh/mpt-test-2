@@ -1,23 +1,23 @@
 #@package _global_
 defaults:
-  - /mephisto/blueprint: static_task
+  - /mephisto/blueprint: static_react_task
   - /mephisto/architect: ec2
   - /mephisto/provider: prolific
 mephisto:
   architect:
     _architect_type: ec2
     profile_name: mpt
-    subdomain: "0805.1"
+    subdomain: "mpt-p.1"
   blueprint:
-    data_csv: ${task_dir}/data_prolific.csv
-    task_source: ${task_dir}/server_files/demo_task.html
-    preview_source: ${task_dir}/server_files/demo_preview.html
-    extra_source_dir: ${task_dir}/server_files/extra_refs
+    data_json: ${task_dir}/data.json
+    task_source: ${task_dir}/webapp/build/bundle.js
+    link_task_source: false
+    extra_source_dir: ${task_dir}/webapp/src/static
     units_per_assignment: 1
   log_level: "debug"
   task:
-    task_name: "0805"
-    task_title: "0805 Task"
+    task_name: "mpt-p"
+    task_title: "mpt-p Task"
     task_description: "This is a simple test of static Prolific tasks."
     task_reward: 10
     task_tags: "static,task,testing"

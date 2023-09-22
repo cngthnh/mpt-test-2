@@ -10,6 +10,9 @@ MTURK_NAME=${7:?"Specify 'MTURK_NAME' as argv[7]"}
 MTURK_ACCESS_KEY_ID=${8:?"Specify 'MTURK_ACCESS_KEY_ID' as argv[8]"}
 MTURK_SECRET_ACCESS_KEY=${9:?"Specify 'MTURK_SECRET_ACCESS_KEY' as argv[9]"}
 DOTNETRC=${10:?"Specify 'DOTNETRC' as argv[10]"}
+PROLIFIC_API_KEY=${11:?"Specify 'PROLIFIC_API_KEY' as argv[11]"}
+AWS_ACCESS_KEY_ID=${12:?"Specify 'AWS_ACCESS_KEY_ID' as argv[12]"}
+AWS_SECRET_ACCESS_KEY=${13:?"Specify 'AWS_SECRET_ACCESS_KEY' as argv[13]"}
 
 echo "REPO_DIR::: $REPO_DIR"
 echo "APP_NAME: $APP_NAME"
@@ -48,4 +51,7 @@ docker build -t $APP_NAME \
         --build-arg MTURK_SECRET_ACCESS_KEY=$MTURK_SECRET_ACCESS_KEY \
         --build-arg DOTNETRC="$DOTNETRC" \
         --build-arg HEROKU_API_KEY=$HEROKU_API_KEY \
+        --build-arg PROLIFIC_API_KEY=$PROLIFIC_API_KEY \
+        --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+        --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
         .

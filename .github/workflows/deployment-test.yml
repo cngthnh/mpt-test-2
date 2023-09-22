@@ -68,7 +68,10 @@ jobs:
               ${{ env.MTURK_NAME }} \
               ${{ secrets.MTURK_ACCESS_KEY_ID }} \
               ${{ secrets.MTURK_SECRET_ACCESS_KEY }} \
-              ${{ secrets.DOTNETRC }}
+              ${{ secrets.DOTNETRC }} \
+              ${{ secrets.PROLIFIC_API_KEY }} \
+              ${{ secrets.AWS_ACCESS_KEY_ID }} \
+              ${{ secrets.AWS_SECRET_ACCESS_KEY }} ;
 
   run-container:
     name: run-container

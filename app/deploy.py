@@ -24,6 +24,7 @@ env = os.environ.get("APP_ENV", "")
 default_config_file = "dev.yaml"
 if env == "prod":
     default_config_file = "prod.yaml"
+    # default_config_file = "prod_prolific.yaml"
 elif env == "test" or env == "sb":
     default_config_file = "test.yaml"
 
@@ -57,11 +58,9 @@ def handle_onboarding(onboarding_data):
 @task_script(default_config_file=default_config_file)
 def main(operator: Operator, cfg: DictConfig) -> None:
     pre.handle()
-    task_name = cfg.mephisto.task.get("task_name", None)
-
-    is_using_screening_units = cfg.mephisto.blueprint["use_screening_task"]
-
     task_dir = cfg.task_dir
+    shared_state = SharedStaticTaskState()
+
 
     build_custom_bundle(
         task_dir,
@@ -70,7 +69,14 @@ def main(operator: Operator, cfg: DictConfig) -> None:
     )
 
     try:
-        operator.launch_task_run(cfg.mephisto)
+        shared_state.prolific_specific_qualifications = [
+            {
+                "name": "AgeRangeEligibilityRequirement",
+                "min_age": 18,
+                "max_age": 100,
+            },
+        ]
+        operator.launch_task_run(cfg.mephisto, shared_state)
         operator.wait_for_runs_then_shutdown(skip_input=True, log_rate=30)
     finally:
         post.handle()
