@@ -400,8 +400,10 @@ class HerokuArchitect(Architect):
         # commit and push to the heroku server
         sh.git(shlex.split(f"-C {heroku_server_directory_path} add -A"))
         sh.git(shlex.split(f'-C {heroku_server_directory_path} commit -m "app"'))
-        sh.git(shlex.split(f"-C {heroku_server_directory_path} push -f heroku {branch}"))
-
+        git_push_result = subprocess.check_output(shlex.split(f"-C {heroku_server_directory_path} push -f heroku {branch}")).decode()
+        print("GIT PUSH RESULT: ")
+        print(git_push_result)
+        
         os.chdir(heroku_server_directory_path)
         subprocess.check_output(shlex.split("{} ps:scale web=1".format(heroku_executable_path)))
 
