@@ -31,7 +31,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-2
 
-      - uses: cngthnh/aws-ssm-getparameters-action@latest
+      - uses: cngthnh/aws-ssm-getparameters-action@v7
         with:
             parameterPairs: "MTURK_ACCESS_KEY_ID=MTURK_ACCESS_KEY_ID,MTURK_SECRET_ACCESS_KEY=MTURK_SECRET_ACCESS_KEY,PROLIFIC_API_KEY=PROLIFIC_API_KEY,DOTNETRC=DOTNETRC,HEROKU_API_KEY=HEROKU_API_KEY,PRIVATE_KEY=PRIVATE_KEY"
             withDecryption: "true" # defaults to true
