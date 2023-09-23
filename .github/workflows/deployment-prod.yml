@@ -9,7 +9,7 @@ on:
 
 
 env:
-  HOST: 3.26.183.11
+  HOST: mephisto.aufederal2022.com
   USERNAME: ubuntu
   PORT: 22
   MTURK_NAME: my_mturk_user
