@@ -10,7 +10,7 @@ on:
 
 env:
   HOST: mephisto.aufederal2022.com
-  USERNAME: ubuntu
+  USERNAME: deployer
   PORT: 22
   MTURK_NAME: my_mturk_user
   MTURK_TYPE: mturk
