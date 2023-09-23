@@ -33,13 +33,7 @@ jobs:
 
       - uses: dkershner6/aws-ssm-getparameters-action@v1
         with:
-            parameterPairs: |
-              "arn:aws:ssm:ap-southeast-2:279615518931:parameter/MTURK_ACCESS_KEY_ID=MTURK_ACCESS_KEY_ID,
-              arn:aws:ssm:ap-southeast-2:279615518931:parameter/MTURK_SECRET_ACCESS_KEY=MTURK_SECRET_ACCESS_KEY,
-              arn:aws:ssm:ap-southeast-2:279615518931:parameter/PROLIFIC_API_KEY=PROLIFIC_API_KEY,
-              arn:aws:ssm:ap-southeast-2:279615518931:parameter/DOTNETRC=DOTNETRC,
-              arn:aws:ssm:ap-southeast-2:279615518931:parameter/HEROKU_API_KEY=HEROKU_API_KEY,
-              arn:aws:ssm:ap-southeast-2:279615518931:parameter/PRIVATE_KEY=PRIVATE_KEY"
+            parameterPairs: "arn:aws:ssm:ap-southeast-2:279615518931:parameter/MTURK_ACCESS_KEY_ID=MTURK_ACCESS_KEY_ID,arn:aws:ssm:ap-southeast-2:279615518931:parameter/MTURK_SECRET_ACCESS_KEY=MTURK_SECRET_ACCESS_KEY,arn:aws:ssm:ap-southeast-2:279615518931:parameter/PROLIFIC_API_KEY=PROLIFIC_API_KEY,arn:aws:ssm:ap-southeast-2:279615518931:parameter/DOTNETRC=DOTNETRC,arn:aws:ssm:ap-southeast-2:279615518931:parameter/HEROKU_API_KEY=HEROKU_API_KEY,arn:aws:ssm:ap-southeast-2:279615518931:parameter/PRIVATE_KEY=PRIVATE_KEY"
             withDecryption: "true" # defaults to true
       - uses: appleboy/ssh-action@v0.1.7
         with:
