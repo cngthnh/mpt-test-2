@@ -393,15 +393,17 @@ class HerokuArchitect(Architect):
             full_config_str = " ".join(config_strs)
             subprocess.check_output(
                 shlex.split(
-                    f"{heroku_executable_path} config:set -a {heroku_app_name} {full_config_str}"
+                    f"{heroku_executable_path} config:set -a {heroku_app_name} {full_config_str} NODE_MODULES_CACHE=false"
                 )
             )
 
         # commit and push to the heroku server
         sh.git(shlex.split(f"-C {heroku_server_directory_path} add -A"))
         sh.git(shlex.split(f'-C {heroku_server_directory_path} commit -m "app"'))
-        sh.git(shlex.split(f"-C {heroku_server_directory_path} push -f heroku {branch}"))
-
+        git_push_result = subprocess.check_output(shlex.split(f"-C {heroku_server_directory_path} push -f heroku {branch}")).decode()
+        print("GIT PUSH RESULT: ")
+        print(git_push_result)
+        
         os.chdir(heroku_server_directory_path)
         subprocess.check_output(shlex.split("{} ps:scale web=1".format(heroku_executable_path)))
 
