@@ -1,10 +1,14 @@
 #@package _global_
 defaults:
   - /mephisto/blueprint: static_react_task
-  - /mephisto/architect: heroku
+  - /mephisto/architect: ec2
   - /mephisto/provider: mturk
 mephisto:
   log_level: debug
+  architect:
+    _architect_type: ec2
+    profile_name: mpt
+    subdomain: "mpt-p.1"
   provider:
     requester_name: my_mturk_user
   blueprint:

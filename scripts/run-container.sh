@@ -1,3 +1,5 @@
+#!/bin/bash
+
 APP_NAME=${1:?"Specify 'APP_NAME' as argv[1]"}
 HEROKU_API_KEY=${2:?"Specify 'HEROKU_API_KEY' as argv[2]"}
 APP_ENV=${3:?"Specify 'APP_ENV' as argv[3]"}
@@ -29,9 +31,11 @@ fi
 
 mkdir -p ~/logs/$APP_NAME/;
 
-LOG_FILE=~/logs/$APP_NAME/$container_id-$(date +%s).log
+LOG_FILE="$HOME/logs/$APP_NAME/$container_id-$(date +%s).log";
 echo "Streaming logs from container $container_id to file $LOG_FILE";
-nohup docker logs -f $container_id > $LOG_FILE &
+DOCKER_LOGS=$(docker inspect --format='{{.LogPath}}' $container_id);
+sudo ln "$DOCKER_LOGS" "$LOG_FILE";
+sudo chmod 777 "$LOG_FILE";
 
 echo "Waiting for MTurk preview URL: ";
 

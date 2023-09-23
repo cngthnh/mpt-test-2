@@ -44,8 +44,8 @@ Please discuss with your manager before changing them.
 ## Local Deployment :hammer:
 1. Start from the `deployment` branch
 2. cd to `app` directory
-3. Run `make run` to start the local server
-4. You might want to run `make link`
+3. Run `make build` to freshly build the docker image for the first time
+4. Run `make run` to start the local server
 5. Run `make watch` to build and watch the frontend
 6. Start implementing your task in webapp/src
 

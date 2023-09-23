@@ -55,7 +55,12 @@ get_subdomain_from_filename() {
 # Check if a container with the given name is running
 is_container_running() {
     local container_name="$1"
-    docker inspect "$container_name" >/dev/null 2>&1
+
+    if [ "$(docker container inspect -f '{{.State.Status}}' "$container_name" 2>/dev/null)" = "running" ]; then
+    	return 0
+    else
+    	return 1
+    fi
 }
 
 # Remove a site from /etc/nginx/sites-available and /etc/nginx/sites-enabled inside the $nginx_container_id container
