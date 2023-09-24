@@ -95,7 +95,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-2
 
-      - uses: dkershner6/aws-ssm-getparameters-action@v1
+      - uses: cngthnh/aws-ssm-getparameters-action@v7
         with:
             parameterPairs: "HEROKU_API_KEY=HEROKU_API_KEY,PRIVATE_KEY=PRIVATE_KEY"
             withDecryption: "true" # defaults to true
@@ -132,7 +132,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-2
 
-      - uses: dkershner6/aws-ssm-getparameters-action@v1
+      - uses: cngthnh/aws-ssm-getparameters-action@v7
         with:
             parameterPairs: "PRIVATE_KEY=PRIVATE_KEY"
             withDecryption: "true" # defaults to true
