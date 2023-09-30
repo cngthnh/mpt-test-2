@@ -37,7 +37,7 @@ sudo chmod 777 "$LOG_FILE";
 echo "Waiting for MTurk preview URL: ";
 
 timeout 1800 \
-    sh -c "while ! grep '$M_TURK_PREVIEW_URL_PREFIX $LOG_FILE'; \
+    sh -c "while ! grep '$M_TURK_PREVIEW_URL_PREFIX' '$LOG_FILE'; \
             do sleep 1; done";
 
 
