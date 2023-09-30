@@ -23,7 +23,6 @@ mephisto:
     task_tags: "static,task,testing"
     max_num_concurrent_units: 10
   provider:
-    requester_name: prolific
     prolific_external_study_url: "https://example.com?participant_id={{%PROLIFIC_PID%}}&study_id={{%STUDY_ID%}}&submission_id={{%SESSION_ID%}}"
     prolific_id_option: "url_parameters"
     prolific_workspace_name: "Jay Test"
