@@ -23,8 +23,8 @@ env = os.environ.get("APP_ENV", "")
 
 default_config_file = "dev.yaml"
 if env == "prod":
-    default_config_file = "prod.yaml"
-    # default_config_file = "prod_prolific.yaml"
+    # default_config_file = "prod.yaml"
+    default_config_file = "prod_prolific.yaml"
 elif env == "test" or env == "sb":
     default_config_file = "test.yaml"
 

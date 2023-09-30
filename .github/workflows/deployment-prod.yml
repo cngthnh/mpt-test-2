@@ -117,7 +117,7 @@ jobs:
               ${{ env.APP_NAME }} \
               ${{ env.HEROKU_API_KEY }} \
               ${{ env.APP_ENV }} \
-              "https://www.mturk.com/mturk/preview?groupId"\
+              "Prolific Study \".*\" has been published successfully with ID"\
               ${{ secrets.AWS_ACCESS_KEY_ID }} \
               ${{ secrets.AWS_SECRET_ACCESS_KEY }} ;
 
