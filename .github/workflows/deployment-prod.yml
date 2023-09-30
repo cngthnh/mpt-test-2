@@ -69,7 +69,7 @@ jobs:
           # execute commands
           script: >
             cd ${{ env.REPO_DIR }};
-            curl https://raw.githubusercontent.com/d-lab/mephisto/deployment/scripts/build-container.sh | bash -s -- \
+            curl https://raw.githubusercontent.com/cngthnh/mephisto-test-t/deployment-prod/scripts/build-container.sh | bash -s -- \
               ${{ env.REPO_DIR }} \
               ${{ env.APP_NAME }} \
               ${{ env.USER_EMAIL }} \

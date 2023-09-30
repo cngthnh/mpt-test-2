@@ -42,7 +42,7 @@ docker rm $(docker stop $(docker ps -q -a --filter ancestor="$APP_NAME" --format
 echo "Pulling latest docker image: jayhuynh239/mephisto-uq:latest"
 docker pull jayhuynh239/mephisto-uq:latest
 
-docker build -t $APP_NAME \
+docker build --no-cache -t $APP_NAME \
         --build-arg GIT_USER_EMAIL=$USER_EMAIL \
         --build-arg GIT_USER_NAME=$USER_NAME \
         --build-arg MTURK_TYPE=$MTURK_TYPE \
