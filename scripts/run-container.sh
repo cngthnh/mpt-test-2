@@ -12,11 +12,8 @@ AWS_SECRET_ACCESS_KEY=${6:?"Specify 'AWS_SECRET_ACCESS_KEY' as argv[6]"}
 docker run -d --rm --init -v $APP_NAME-volume:/mephisto/data \
     --net mephistonginx_mephisto-net \
     --name $APP_NAME \
-    -e HEROKU_API_KEY=$HEROKU_API_KEY \
     -e APP_ENV=$APP_ENV \
     -e APP_NAME=$APP_NAME \
-    -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-    -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
     $APP_NAME;
 
 container_id=$(docker ps -q --filter ancestor=$APP_NAME --format="{{.ID}}");
