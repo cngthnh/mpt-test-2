@@ -7,11 +7,11 @@ M_TURK_PREVIEW_URL_PREFIX=${4:?"Specify 'M_TURK_PREVIEW_URL_PREFIX' as argv[4]"}
 AWS_ACCESS_KEY_ID=${5:?"Specify 'AWS_ACCESS_KEY_ID' as argv[5]"}
 AWS_SECRET_ACCESS_KEY=${6:?"Specify 'AWS_SECRET_ACCESS_KEY' as argv[6]"}
 
-LOG_TIME=(date +%s)
+LOG_TIME=$(date +%s)
 
-mkdir -p ~/app-data/$APP_NAME-$LOG_TIME
+mkdir -p $HOME/app-data/$APP_NAME-$LOG_TIME
 
-docker run -d --rm --init -v ~/app-data/$APP_NAME-$LOG_TIME:/mephisto/data \
+docker run -d --rm --init -v $HOME/app-data/$APP_NAME/$LOG_TIME:/mephisto/data \
     --net mephistonginx_mephisto-net \
     --name $APP_NAME \
     -e APP_ENV=$APP_ENV \
