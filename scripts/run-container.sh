@@ -9,7 +9,7 @@ AWS_SECRET_ACCESS_KEY=${6:?"Specify 'AWS_SECRET_ACCESS_KEY' as argv[6]"}
 
 LOG_TIME=$(date +%s)
 
-docker run -d --rm --init -v $HOME/app-data/$APP_NAME/$LOG_TIME:/mephisto/data \
+docker run -d --rm --init -v $APP_NAME-volume:/mephisto/data \
     --net mephistonginx_mephisto-net \
     --name $APP_NAME \
     -e APP_ENV=$APP_ENV \
