@@ -35,7 +35,7 @@ jobs:
       - name: Get secrets from SSM Parameter Store
         uses: cngthnh/aws-ssm-getparameters-action@v7
         with:
-            parameterPairs: "AWS_ACCOUNT_ID=ACCOUNT_ID,MTURK_ACCESS_KEY_ID=MTURK_ACCESS_KEY_ID,MTURK_SECRET_ACCESS_KEY=MTURK_SECRET_ACCESS_KEY,PROLIFIC_API_KEY=PROLIFIC_API_KEY,DOTNETRC=DOTNETRC,HEROKU_API_KEY=HEROKU_API_KEY,PRIVATE_KEY=PRIVATE_KEY"
+            parameterPairs: "ACCOUNT_ID=AWS_ACCOUNT_ID,MTURK_ACCESS_KEY_ID=MTURK_ACCESS_KEY_ID,MTURK_SECRET_ACCESS_KEY=MTURK_SECRET_ACCESS_KEY,PROLIFIC_API_KEY=PROLIFIC_API_KEY,DOTNETRC=DOTNETRC,HEROKU_API_KEY=HEROKU_API_KEY,PRIVATE_KEY=PRIVATE_KEY"
             withDecryption: "true" # defaults to true
 
       - name: Build and publish image into ECR, then start the service
