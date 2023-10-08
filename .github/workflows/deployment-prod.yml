@@ -20,6 +20,7 @@ env:
   APP_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
   APP_ENV: dev
   AWS_REGION: ap-southeast-2
+  SVLD_VERSION: alpha-1
 
 jobs:
   build-container:
