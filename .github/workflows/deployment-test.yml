@@ -18,6 +18,7 @@ env:
   REPO_DIR: ~/${{ github.event.repository.name }}-${{ github.ref_name }}
   APP_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
   APP_ENV: test
+  SVLD_VERSION: alpha-1
 
 jobs:
   build-container:
