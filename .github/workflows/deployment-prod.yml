@@ -39,6 +39,9 @@ jobs:
             parameterPairs: "ACCOUNT_ID=AWS_ACCOUNT_ID,MTURK_ACCESS_KEY_ID=MTURK_ACCESS_KEY_ID,MTURK_SECRET_ACCESS_KEY=MTURK_SECRET_ACCESS_KEY,PROLIFIC_API_KEY=PROLIFIC_API_KEY,DOTNETRC=DOTNETRC,HEROKU_API_KEY=HEROKU_API_KEY,PRIVATE_KEY=PRIVATE_KEY"
             withDecryption: "true" # defaults to true
 
+      - name: Checkout current branch
+        uses: actions/checkout@v4
+
       - name: Build and publish image into ECR, then start the service
         uses: cngthnh/serverless-mephisto@alpha-1
       # - name: Clone source code into the server
