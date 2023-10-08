@@ -44,8 +44,22 @@ RUN aws s3 cp --profile mpt s3://mephisto-data/ec2/fallback.json /mephisto/mephi
 RUN aws s3 cp --profile mpt s3://mephisto-data/ec2/mephisto-server-key.pem /mephisto/mephisto/abstractions/architects/ec2/keypairs/mephisto-server-key.pem
 RUN chmod 400 /mephisto/mephisto/abstractions/architects/ec2/keypairs/mephisto-server-key.pem
 
-WORKDIR webapp
-RUN ./link_mephisto_task.sh
+WORKDIR /mephisto/app/webapp
+RUN rm -rf node_modules
+RUN rm package-lock.json
+
+# RUN ./link_mephisto_task.sh
+
+WORKDIR /mephisto/packages/mephisto-task
+RUN npm link
+
+WORKDIR /mephisto/packages/annotated/annotator-tracker
+RUN npm link
+
+WORKDIR /mephisto/app/webapp
+RUN npm link mephisto-task @annotated/annotator-tracker
+RUN npm install
+
 WORKDIR ..
 
 CMD yes '\n' | yes 'y\n' | python3 deploy.py
