@@ -47,7 +47,9 @@ RUN chmod 400 /mephisto/mephisto/abstractions/architects/ec2/keypairs/mephisto-s
 WORKDIR /mephisto/app/webapp
 RUN rm -rf node_modules
 RUN rm package-lock.json
+
 # RUN ./link_mephisto_task.sh
+
 WORKDIR /mephisto/packages/mephisto-task
 RUN npm link
 
