@@ -7,6 +7,7 @@ on:
     branches:
       - deployment-test
 
+
 env:
   HOST: mephisto.aufederal2022.com
   USERNAME: deployer
@@ -17,108 +18,30 @@ env:
   USER_NAME: jaythaiduong.huynh
   REPO_DIR: ~/${{ github.event.repository.name }}-${{ github.ref_name }}
   APP_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
-  APP_ENV: test
-  SVLD_VERSION: alpha-1
+  APP_ENV: dev
+  AWS_REGION: ap-southeast-2
+  SVLD_VERSION: alpha-2
 
 jobs:
   build-container:
     name: build-container
     runs-on: ubuntu-latest
     steps:
-      - uses: appleboy/ssh-action@v0.1.7
+      - name: Authorize AWS
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          # ssh host
-          host: ${{ env.HOST }}
-          # ssh port
-          port: ${{ env.PORT }}
-          # ssh username
-          username: ${{ env.USERNAME }}
-          # ssh password
-          key: ${{ secrets.PRIVATE_KEY }}
-          # execute commands
-          script: > 
-            if [ -d ${{ env.REPO_DIR }} ];
-            then 
-              cd ${{ env.REPO_DIR }} && git pull || true; 
-            else 
-              mkdir -p ${{ env.REPO_DIR }} && cd ${{ env.REPO_DIR }};
-              git clone git@github.com:${{ github.repository }}.git ${{ env.REPO_DIR }};
-              git checkout ${{ github.ref_name }}; 
-            fi
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
-      - uses: appleboy/ssh-action@v0.1.7
+      - name: Get secrets from SSM Parameter Store
+        uses: cngthnh/aws-ssm-getparameters-action@v7
         with:
-          # ssh host
-          host: ${{ env.HOST }}
-          # ssh port
-          port: ${{ env.PORT }}
-          # ssh username
-          username: ${{ env.USERNAME }}
-          # ssh password
-          key: ${{ secrets.PRIVATE_KEY }}
-          # execute commands
-          script: >
-            cd ${{ env.REPO_DIR }};
-            curl https://raw.githubusercontent.com/d-lab/mephisto/deployment/scripts/build-container.sh | bash -s -- \
-              ${{ env.REPO_DIR }} \
-              ${{ env.APP_NAME }} \
-              ${{ env.USER_EMAIL }} \
-              ${{ env.USER_NAME }} \
-              ${{ secrets.HEROKU_API_KEY }} \
-              ${{ env.MTURK_TYPE }} \
-              ${{ env.MTURK_NAME }} \
-              ${{ secrets.MTURK_ACCESS_KEY_ID }} \
-              ${{ secrets.MTURK_SECRET_ACCESS_KEY }} \
-              ${{ secrets.DOTNETRC }} \
-              ${{ secrets.PROLIFIC_API_KEY }} \
-              ${{ secrets.AWS_ACCESS_KEY_ID }} \
-              ${{ secrets.AWS_SECRET_ACCESS_KEY }} ;
+            parameterPairs: "DOMAIN=DOMAIN,ECR_IMAGE_REPO=ECR_IMAGE_REPO,ACCOUNT_ID=AWS_ACCOUNT_ID,MTURK_ACCESS_KEY_ID=MTURK_ACCESS_KEY_ID,MTURK_SECRET_ACCESS_KEY=MTURK_SECRET_ACCESS_KEY,PROLIFIC_API_KEY=PROLIFIC_API_KEY,DOTNETRC=DOTNETRC,HEROKU_API_KEY=HEROKU_API_KEY,PRIVATE_KEY=PRIVATE_KEY"
+            withDecryption: "true" # defaults to true
 
-  run-container:
-    name: run-container
-    needs: build-container
-    runs-on: ubuntu-latest
-    steps:
-      - uses: appleboy/ssh-action@v0.1.7
-        with:
-          # ssh host
-          host: ${{ env.HOST }}
-          # ssh port
-          port: ${{ env.PORT }}
-          # ssh username
-          username: ${{ env.USERNAME }}
-          # ssh password
-          key: ${{ secrets.PRIVATE_KEY }}
-          # execute commands
-          command_timeout: 30m
-          script: >
-            cd ${{ env.REPO_DIR }}; 
-            curl https://raw.githubusercontent.com/d-lab/mephisto/deployment/scripts/run-container.sh | bash -s -- \
-              ${{ env.APP_NAME }} \
-              ${{ secrets.HEROKU_API_KEY }} \
-              ${{ env.APP_ENV }} \
-              "https://workersandbox.mturk.com/mturk/preview?groupId" \
-              ${{ secrets.AWS_ACCESS_KEY_ID }} \
-              ${{ secrets.AWS_SECRET_ACCESS_KEY }} ;
+      - name: Checkout current branch
+        uses: actions/checkout@v4
 
-  view-metrics:
-    name: view-metrics
-    needs: run-container
-    runs-on: ubuntu-latest
-    steps:
-      - uses: appleboy/ssh-action@v0.1.7
-        with:
-          # ssh host
-          host: ${{ env.HOST }}
-          # ssh port
-          port: ${{ env.PORT }}
-          # ssh username
-          username: ${{ env.USERNAME }}
-          # ssh password
-          key: ${{ secrets.PRIVATE_KEY }}
-          # execute commands
-          script: >
-            cd ${{ env.REPO_DIR }}; 
-            curl https://raw.githubusercontent.com/d-lab/mephisto/deployment/scripts/view-metrics.sh | bash -s -- \
-              ${{ env.APP_NAME }};
-
+      - name: Build and publish image into ECR, then start the service
+        uses: cngthnh/serverless-mephisto@alpha-2
