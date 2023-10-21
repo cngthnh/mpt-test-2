@@ -18,6 +18,7 @@ env:
   REPO_DIR: ~/${{ github.event.repository.name }}-${{ github.ref_name }}
   APP_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
   APP_ENV: test
+  PREVIEW_URL_PREFIX: "Mock task launched: .* for preview"
 
 jobs:
   build-container:
