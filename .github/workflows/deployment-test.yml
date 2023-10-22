@@ -21,7 +21,7 @@ env:
   APP_ENV: dev
   AWS_REGION: ap-southeast-2
   SVLD_VERSION: alpha-2
-  PREVIEW_URL_PREFIX: '%Mock task launched: .* for preview%'
+  PREVIEW_URL_PREFIX: '%Mock task launched%'
 
 jobs:
   build-container:
