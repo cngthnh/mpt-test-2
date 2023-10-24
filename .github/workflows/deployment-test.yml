@@ -47,4 +47,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and publish image into ECR, then start the service
-        uses: cngthnh/serverless-mephisto@main
+        uses: cngthnh/serverless-mephisto@alpha-2
