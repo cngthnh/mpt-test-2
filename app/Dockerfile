@@ -49,3 +49,5 @@ RUN ./link_mephisto_task.sh
 WORKDIR ..
 
 CMD yes '\n' | yes 'y\n' | python3 deploy.py
+
+EXPOSE 3000
