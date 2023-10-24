@@ -22,6 +22,7 @@ env:
   AWS_REGION: ap-southeast-2
   SVLD_VERSION: alpha-2
   PREVIEW_URL_PREFIX: '%Mock task launched.* for preview%'
+  CONT_PORT: 3000
 
 jobs:
   build-container:
