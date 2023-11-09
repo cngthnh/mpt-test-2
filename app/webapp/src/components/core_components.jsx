@@ -74,7 +74,7 @@ function SimpleFrontend({taskData, isOnboarding, onSubmit, onError}) {
   return (
       <div style={{padding: '50px'}}>
         <div className="p-4">
-          <h2 className="text-2xl font-semibold mb-4">This is sample task Jay Huynh</h2>
+          <h2 className="text-2xl font-semibold mb-4">This is sample task Jay Huynh 123</h2>
           <div>
             <label htmlFor="answer2"
                    className="block text-sm font-medium text-gray-700">Input the number you see here to the box below and submit: <strong>{taskData.data.value}</strong></label>
