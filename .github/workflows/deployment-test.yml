@@ -6,8 +6,6 @@ on:
   pull_request:
     branches:
       - deployment-test
-
-
 env:
   HOST: mephisto.aufederal2022.com
   USERNAME: deployer
