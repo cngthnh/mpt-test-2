@@ -19,7 +19,7 @@ mephisto:
     task_name: "mpt-t"
     task_title: "mpt-t Task"
     task_description: "This is a simple test of static Prolific tasks."
-    task_reward: 1
+    task_reward: 10
     task_tags: "static,task,testing"
     max_num_concurrent_units: 1
   provider:
