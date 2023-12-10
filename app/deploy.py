@@ -26,7 +26,7 @@ if env == "prod":
     # default_config_file = "prod.yaml"
     default_config_file = "prod_prolific.yaml"
 elif env == "test" or env == "sb":
-    default_config_file = "test.yaml"
+    default_config_file = "test_prolific.yaml"
 
 
 def my_screening_unit_generator():
