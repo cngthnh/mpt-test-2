@@ -32,7 +32,7 @@ COPY . /mephisto
 RUN mkdir ~/.mephisto
 
 # Create the main Mephisto data directory
-RUN mkdir -p /mephisto/data
+# RUN mkdir -p /mephisto/data
 
 SHELL ["/bin/bash", "-c"]
 # Write the mephisto config file manually for now to avoid prompt.
