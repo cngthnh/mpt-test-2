@@ -32,13 +32,13 @@ COPY . /mephisto
 RUN mkdir ~/.mephisto
 
 # Create the main Mephisto data directory
-RUN mkdir -p /mephisto/data
+RUN mkdir -p /mephisto/data/results
 
 SHELL ["/bin/bash", "-c"]
 # Write the mephisto config file manually for now to avoid prompt.
 # For bash-style string $ expansion for newlines,
 # we need to switch the shell to bash:
-RUN echo $'core: \n  main_data_directory: /mephisto/data' >> ~/.mephisto/config.yml
+RUN echo $'core: \n  main_data_directory: /mephisto/data/results' >> ~/.mephisto/config.yml
 
 WORKDIR /mephisto
 RUN pip3 install -e .

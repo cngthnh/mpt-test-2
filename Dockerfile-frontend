@@ -25,7 +25,7 @@ RUN yarn build-all
 # For bash-style string $ expansion for newlines,
 # we need to switch the shell to bash:
 SHELL ["/bin/bash", "-c"]
-RUN echo $'core: \n  main_data_directory: /mephisto/data' >> ~/.mephisto/config.yml
+RUN echo $'core: \n  main_data_directory: /mephisto/data/results' >> ~/.mephisto/config.yml
 
 # Uncomment if you'd like to install the Mephisto CLI as well:
 # RUN cd /mephisto && ls && pip install -e .
