@@ -5,7 +5,7 @@ services:
     container_name: ${PROJECT_NAME}-service
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     command: >
       sh -c "../mephisto/scripts/metrics/shutdown_metrics.py || true && python3 deploy.py"
 #    command: ["sleep", "infinity"]
