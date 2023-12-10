@@ -33,7 +33,7 @@ loaded_data_dir = None
 def get_root_dir() -> str:
     """Return the currently configured root mephisto directory"""
     # This file is at ROOT/mephisto/utils/dirs.py
-    return os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'results')
+    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def get_provider_dir() -> str:

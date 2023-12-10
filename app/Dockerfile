@@ -62,6 +62,6 @@ RUN npm install
 
 WORKDIR ..
 
-CMD yes '\n' | yes 'y\n' | python3 deploy.py
+CMD yes '/mephisto/data/data/results\n' | yes 'y\n' | python3 deploy.py
 
 EXPOSE 3000
