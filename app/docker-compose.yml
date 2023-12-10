@@ -17,3 +17,4 @@ services:
       - ./data:/mephisto/data:cached
       - ../mephisto:/mephisto/mephisto:cached
       - ../examples:/mephisto/examples:cached
+      
