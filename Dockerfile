@@ -33,7 +33,6 @@ RUN mkdir ~/.mephisto
 
 # Create the main Mephisto data directory
 RUN mkdir -p /mephisto/data
-RUN chown -R $(id -u):$(id -g) /mephisto/data
 
 SHELL ["/bin/bash", "-c"]
 # Write the mephisto config file manually for now to avoid prompt.
