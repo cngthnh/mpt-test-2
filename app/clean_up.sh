@@ -1,4 +1,4 @@
-mephisto_data_root="/mephisto/data"
+mephisto_data_root="/mephisto/data/results"
 
 mephisto_script_root="/mephisto/scripts"
 
