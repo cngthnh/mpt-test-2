@@ -9,7 +9,7 @@ on:
 
 
 env:
-  HOST: mephisto.aufederal2022.com
+  HOST: mephisto.dlab-mephisto.com
   USERNAME: deployer
   PORT: 22
   MTURK_NAME: my_mturk_user_sandbox
