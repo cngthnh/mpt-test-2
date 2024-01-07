@@ -1,4 +1,4 @@
-FROM jayhuynh239/mephisto-uq:latest
+FROM vcngthnh/mephisto-base:0.1
 
 ARG GIT_USER_EMAIL
 ARG GIT_USER_NAME
