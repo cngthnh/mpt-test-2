@@ -13,9 +13,8 @@ services:
       - 3000:3000
       - 3032:3032
     volumes:
-      - .:/mephisto/app:cached
-      - ./data:/mephisto/data:cached
-      - ./results:/mephisto/data/results
-      - ../mephisto:/mephisto/mephisto:cached
-      - ../examples:/mephisto/examples:cached
+      - .:/mephisto/app
+      - ./data:/mephisto/data
+      - ../mephisto:/mephisto/mephisto
+      - ../examples:/mephisto/examples
       
