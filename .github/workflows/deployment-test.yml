@@ -7,6 +7,7 @@ on:
     branches:
       - deployment-test
 
+
 env:
   HOST: mephisto.dlab-mephisto.com
   USERNAME: deployer
